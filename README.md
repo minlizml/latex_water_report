@@ -1,2 +1,2 @@
 # latex_water_report
- 
+During my time as a RA at the UNC EFC, I completed this project as the primary developer, using R Markdown combined with LaTeX typesetting to design and create the annual North Carolina water utilities rate report. I was responsible for the entire report production, which involved creating data visualizations using R packages like ggplot2 and professional report formatting with LaTeX. The report covers rate structure analysis, operational cost analysis, regional comparisons, and affordability assessments, providing valuable insights for policymakers and water utility managers. 
