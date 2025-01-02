@@ -1,0 +1,1838 @@
+---
+title: ""
+output: 
+  pdf_document:
+    latex_engine: xelatex
+header-includes:
+  - \usepackage{tikz}
+  - \usepackage{graphicx}
+  - \usepackage[absolute,overlay]{textpos}
+  - \usetikzlibrary{shapes.geometric,calc}
+  - \usepackage{xcolor}
+geometry: 
+  - margin=0in
+  - paperwidth=8.5in
+  - paperheight=11in
+---
+```{=latex}
+% Top header design
+\begin{tikzpicture}[remember picture, overlay]
+    % Upper horizontal line
+    \draw[color=blue!30] ([xshift=-7cm,yshift=13cm]current page.center) -- 
+                         ([xshift=7cm,yshift=13cm]current page.center);
+    
+    % Left blue trapezoid
+    \node[trapezium, trapezium left angle=120, trapezium right angle=60, 
+          fill={rgb,255:red,135; green,206; blue,250}, 
+          minimum width=17cm, yscale=0.3] 
+          at ([yshift=11.5cm]current page.center) {};
+    
+    % Right blue trapezoid
+    \node[trapezium, trapezium right angle=120, trapezium left angle=60, 
+          fill={rgb,255:red,70; green,130; blue,180}, 
+          minimum width=17cm, yscale=0.3] 
+          at ([yshift=11.5cm]current page.center) {};
+    
+    % Lower horizontal line
+    \draw[color=blue!30] ([xshift=-7cm,yshift=10cm]current page.center) -- 
+                         ([xshift=7cm,yshift=10cm]current page.center);
+\end{tikzpicture}
+
+% Center title text
+\begin{textblock*}{4in}(2.5in,0.7in)  % Adjust to move "2024" rightward
+{\Huge\bfseries \color{white} 2024}
+\end{textblock*}
+\begin{textblock*}{4in}(3.5in,0.7in)  % Adjust to move the following text leftward
+{\Large\bfseries \color{white} NORTH CAROLINA\\ WATER \& WASTEWATER\\ RATES REPORT}
+\end{textblock*}
+
+% Background image
+\begin{figure}[!htbp]
+    \vspace{4cm}
+    \centering
+    \includegraphics[width=\paperwidth,height=1.5\textheight]{background.png}
+\end{figure}
+
+% Logo section using textpos for positioning
+\begin{textblock*}{\paperwidth}(0in,9in)  % Adjust the second parameter (vertical position) to move the logo group
+    \centering
+    \begin{tabular}{l@{\hspace{1.5cm}}r@{\hspace{1.5cm}}l}
+        \includegraphics[width=0.15\paperwidth]{unc_logo.png} & 
+        \includegraphics[width=0.4\paperwidth]{nclm_logo.png} & 
+        \includegraphics[width=0.25\paperwidth]{DEQ.png}
+    \end{tabular}
+\end{textblock*}
+
+
+
+```
+
+
+```{=latex}
+\newpage
+
+% Background
+\begin{tikzpicture}[remember picture,overlay]
+    % Full-page background image
+    \node[anchor=center] at (current page.center) {
+        \includegraphics[width=\paperwidth,height=\paperheight]{forest.jpg}
+    };
+    
+    % Blue title box - ABOUT THIS REPORT
+    \node[anchor=north west,fill={rgb,255:red,135; green,206; blue,250},fill opacity=0.9,
+          text width=\paperwidth,minimum height=2cm]
+    at ([yshift=-1in]current page.north west) {
+        \hspace{1cm} % Add left margin
+        {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont ABOUT THIS REPORT}
+    };
+    
+    % Blue title box - CONTRIBUTORS TO THE REPORT
+    \node[anchor=north west,fill={rgb,255:red,135; green,206; blue,250},fill opacity=0.9,
+          text width=\paperwidth,minimum height=2cm]
+    at ([yshift=-6.3in]current page.north west) {
+        \hspace{1cm} % Add left margin
+        {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont CONTRIBUTORS TO THE REPORT}
+    };
+\end{tikzpicture}
+
+% ABOUT THIS REPORT Content Text
+\begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,fill=white,fill opacity=0.9,text width=\paperwidth,inner sep=0pt] % Content box width set to paper width
+    at ([yshift=-1.78in]current page.north west) { % Offset downward by 1.78in
+        \hspace{1cm} % Add left margin
+        \parbox{\dimexpr\paperwidth-2cm\relax}{ % Text width set to paper width minus 1cm on both sides
+            \vspace{0.5cm} % Top margin
+            \raggedright % Align text to the left
+            \Large % Set font size to Large
+            This report is one of several resources in an annual series on North Carolina water and wastewater rates, funded by the North Carolina Department of Environmental Quality's Division of Water Infrastructure (DWI) and compiled by the North Carolina League of Municipalities (NCLM) and the Environmental Finance Center at the University of North Carolina at Chapel Hill (UNC EFC).
+            
+            \vspace{1em} % Paragraph spacing
+            This report complements the online, interactive \href{https://efc.sog.unc.edu/resource/north-carolina-water-and-wastewater-rates-dashboard/}{\textbf{\color{blue}{Rates Dashboard}}}, where users can compare utilities against various attributes such as geographic location, system characteristics, customer demographics, and financial indicators and benchmarks. This report is also accompanied by a set of \href{https://public.tableau.com/app/profile/efcatunc/viz/NC2024RateTables/Cover}{\textbf{\color{blue}{tables}}} and \href{https://public.tableau.com/app/profile/efcatunc/viz/NC2024RateSheets/RateSheet}{\textbf{\color{blue}{standardized water and wastewater rate information}}} for each participating utility.
+            \vspace{0.5cm} % Bottom margin
+        }
+    };
+\end{tikzpicture}
+
+% CONTRIBUTORS TO THE REPORT Content text
+\begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,fill=white,fill opacity=0.9,text width=\paperwidth,inner sep=0pt] % Keep content box width as paper width
+    at ([yshift=-7.08in]current page.north west) { % Offset downward by 7.08in
+        \hspace{1cm} % Add left margin
+        \parbox{\dimexpr\paperwidth-2cm\relax}{ % Text width set to paper width minus 1cm on both sides
+            \vspace{1cm} % Top margin
+            \centering % Center the text
+            \textbf{\Large NC Department of Environmental Quality's Division of Water Infrastructure:}\\
+            \Large Shadi Eskaf, Division Director
+            \vspace{1em} % Paragraph spacing
+            
+            \textbf{\Large North Carolina League of Municipalities:}\\
+            \Large Chris Nida, Director, Research and Strategic Initiatives
+            \vspace{1em} % Paragraph spacing
+            
+            \textbf{\Large The Environmental Finance Center at UNC Chapel Hill:}\\
+            \Large \textbf{Melanie Sanchez}, Project Director, 
+            \textbf{Maegan Rhoades}, Student Research Assistant, 
+            \textbf{Harrison Sanders}, Student Research Assistant, 
+            \textbf{Devin Wilson}, Student Research Assistant, 
+            \textbf{Abigail Renberg}, Student Research Assistant, 
+            \textbf{Evan Liebgott}, Graduate Student Research Assistant, and 
+            \textbf{Miguel Jackson}, Strategic Outreach Director
+            \vspace{1cm} % Bottom margin
+        }
+    };
+\end{tikzpicture}
+
+```
+
+
+```{=latex}
+\newpage  
+% Background
+\begin{tikzpicture}[remember picture,overlay]
+    % background - FOUR MYTH
+    \node[anchor=center] at (current page.center) {
+        \includegraphics[width=\paperwidth,height=\paperheight]{four_myth.jpg}
+    };
+\end{tikzpicture}
+
+```
+
+
+
+
+```{=latex}
+\newpage
+% Background
+\begin{tikzpicture}[remember picture,overlay]
+    % Background image
+    \node[anchor=center] at (current page.center) {
+        \includegraphics[width=\paperwidth,height=\paperheight]{mountain_top.jpg}
+    };
+\end{tikzpicture}
+
+
+% Title Box 
+\begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,fill={rgb,255:red,135; green,206; blue,250},fill opacity=0.9,
+          text width=\paperwidth,minimum height=2cm] 
+    at ([yshift=-0.5in]current page.north west) {
+        \hspace{1cm} % Left margin
+        {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont INTRODUCTION}
+    };
+\end{tikzpicture}
+
+
+% Content 
+\begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,fill=white,fill opacity=0.9,text width=\paperwidth,inner sep=0pt] 
+    at ([yshift=-1.2in]current page.north west) { 
+        \hspace{1cm} 
+        \parbox{\dimexpr\paperwidth-2cm\relax}{ 
+            \vspace{0.5cm} 
+            \raggedright
+            \Large 
+            Between July 2023 and December 2023, UNC EFC and NCLM conducted a survey of 
+            513 rate-charging water and wastewater utilities in North Carolina.
+
+            A total of \textbf{483 utilities} participated by providing their rate schedules, yielding a 
+            response rate of \textbf{94.15\%}. Utilities from all 100 counties in the state are 
+            represented in this survey group.
+
+            Water and wastewater rate setting is one of a local government’s most important 
+            environmental and public health responsibilities. This report aims to provide utility 
+            professionals and public officials with an up-to-date, detailed survey of current 
+            statewide rate structures and trends, thus assisting in the protection of public health, 
+            improvement of development, and promotion of sustainability in North Carolina.
+
+            \vspace{0.5cm}
+        }
+    };
+\end{tikzpicture}
+
+
+% Callout Box
+\begin{tikzpicture}[remember picture,overlay]
+    % Outside white box
+    \path[
+        draw=white,
+        line width=2pt, 
+        rounded corners=17pt
+    ] 
+    ([xshift=-1.9cm, yshift=2.9cm]current page.south east) rectangle
+    ++(-6cm, 7.2cm); 
+    % Inner bule box
+    \node[
+        anchor=south east,
+        fill={rgb,255:red,135;green,206;blue,250}, 
+        text width=5.1cm, 
+        align=center, 
+        rounded corners=15pt, 
+        minimum height=7cm, 
+        inner xsep=10pt,
+        inner ysep=15pt 
+    ] 
+    at ([xshift=-2cm, yshift=3cm]current page.south east) { 
+        \sffamily\bfseries\color{white}\Large 
+        Continue reading to find out how water and wastewater rates\\
+        ultimately determine how much revenue a community\\
+        must maintain vital infrastructure.
+    };
+\end{tikzpicture}
+
+```
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+# Data
+service_pop <- data.frame(
+  Population = factor(c("> 10,000", "1,000 - 10,000", "< 1,000"),
+                     levels = c("> 10,000", "1,000 - 10,000", "< 1,000")),
+  Percentage = c(33, 48, 20)
+)
+
+# Bar chart
+bar_chart <- ggplot(service_pop, aes(x = Population, y = Percentage)) +
+  geom_bar(stat = "identity", 
+          fill = c("#B8DFF0", "#4682B4", "#1C4E80")) +
+  geom_text(aes(label = paste0(Percentage, "%")), 
+            hjust = -0.2) +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 55), 
+                    breaks = seq(0, 50, by = 10),
+                    labels = paste0(seq(0, 50, by = 10), "%")) +
+  labs(title = "Distribution of Utilities by Service\nPopulation (n=483)",
+       x = "Service Population",
+       y = "Percent of Responding Utilities") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 12, face = "bold", margin = margin(b = 15)),
+    axis.title.x = element_text(size = 10),
+    axis.title.y = element_text(size = 10),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(20, 40, 20, 20)
+  )
+
+# Save as pdf
+ggsave("bar_chart.pdf", bar_chart, width = 6, height = 3.5)
+```
+
+
+
+```{=latex}
+\newpage
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+    % Background
+    \node[anchor=north west, inner sep=0] at (current page.north west) {%
+        \includegraphics[width=\paperwidth, height=\paperheight]{tap_water.jpg}};
+    
+    % Blue title bar
+    \node[anchor=north west, 
+          fill={rgb,255:red,135; green,206; blue,250}, 
+          fill opacity=1,
+          text width=\paperwidth, 
+          minimum height=2cm]
+    at ([yshift=-0.5in]current page.north west) {
+        \hspace{1cm}
+        {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont BY THE NUMBERS}
+    };
+    % Define color
+    \definecolor{WaterColor}{RGB}{36, 125, 169} % Define second waterdrop
+    \definecolor{TitleBarColor}{RGB}{135, 206, 250} % define blue title bar color
+
+    % Context
+    \node[anchor=north west, 
+          fill=white, 
+          fill opacity=0.9, 
+          text width=0.5\paperwidth, 
+          inner sep=0.3cm]
+    at ([xshift=1cm, yshift=-6.2cm]current page.north west) {
+        \begin{minipage}{\textwidth}
+            \begin{tikzpicture}[scale=1.2]
+                % First waterdrop
+                \begin{scope}
+                    \coordinate (a1) at (0.25,0.45);  % Spinning Drops
+                    \node[circle, draw=none,fill={rgb,255:red,36;green,125;blue,169}, minimum size=20pt] (c1) at (0,0) {};
+                    \fill[gray!70] (a1) -- 
+                        (tangent cs:node=c1,point={(a1)},solution=1) --
+                        (c1.center) -- 
+                        (tangent cs:node=c1,point={(a1)},solution=2) -- cycle;
+                    \node[anchor=west] at (1,0.2) {\textbf{\fontsize{36pt}{36pt}\selectfont 348}};
+                    \node[anchor=west] at (1,-0.4) {\fontsize{12pt}{12pt}\selectfont Utilities serving};
+                    \node[anchor=west] at (1,-0.8) {\textbf{\fontsize{14pt}{14pt}\selectfont WATER AND WASTEWATER}};
+                \end{scope}
+
+                % Second waterdrop
+                \begin{scope}[yshift=-2cm]
+                    \coordinate (a2) at (0.25,0.45);  % Spinning Drops
+                    \node[circle, draw=none, fill=WaterColor, minimum size=20pt] (c2) at (0,0) {};
+                    \fill[WaterColor] (a2) --
+                        (tangent cs:node=c2,point={(a2)},solution=1) --
+                        (c2.center) --
+                        (tangent cs:node=c2,point={(a2)},solution=2) -- cycle;
+                    \node[anchor=west] at (1,0.2) {\textbf{\fontsize{36pt}{36pt}\selectfont 102}};
+                    \node[anchor=west] at (1,-0.4) {\fontsize{12pt}{12pt}\selectfont Utilities serving};
+                    \node[anchor=west] at (1,-0.8) {\textbf{\fontsize{14pt}{14pt}\selectfont WATER ONLY}};
+                \end{scope}
+
+                % Third waterdrop
+                \begin{scope}[yshift=-4cm]
+                    \coordinate (a3) at (0.25,0.45);  % Spinning Drops
+                    \node[circle, draw=none, fill=gray!70, minimum size=20pt] (c3) at (0,0) {};
+                    \fill[gray!70] (a3) -- 
+                        (tangent cs:node=c3,point={(a3)},solution=1) --
+                        (c3.center) -- 
+                        (tangent cs:node=c3,point={(a3)},solution=2) -- cycle;
+                    \node[anchor=west] at (1,0.2) {\textbf{\fontsize{36pt}{36pt}\selectfont 33}};
+                    \node[anchor=west] at (1,-0.4) {\fontsize{12pt}{12pt}\selectfont Utilities serving};
+                    \node[anchor=west] at (1,-0.8) {\textbf{\fontsize{14pt}{14pt}\selectfont WASTEWATER ONLY}};
+                \end{scope}
+            \end{tikzpicture}
+        \end{minipage}
+    };
+        % Percentage statistics in the lower left
+\node[anchor=north west, text width=2in] at ([xshift=0.5in,yshift=4.5in]current page.south west) {
+    {\fontsize{36}{43}\bfseries 73\%}\\[0.2cm]
+    {\fontsize{16}{19}\selectfont MUNICIPAL}\\[0.8cm]
+    {\fontsize{36}{43}\bfseries 13\%}\\[0.2cm]
+    {\fontsize{16}{19}\selectfont COUNTY/DISTRICT}\\[0.8cm]
+    {\fontsize{36}{43}\bfseries 7\%}\\[0.2cm]
+    {\fontsize{16}{19}\selectfont NOT-FOR-PROFIT}\\[0.8cm]
+    {\fontsize{36}{43}\bfseries 7\%}\\[0.2cm]
+    {\fontsize{16}{19}\selectfont OTHER}
+};
+
+    % Bottom right bar chart
+    \node[anchor=north west] at ([xshift=2.8in,yshift=4.5in]current page.south west) {
+        \includegraphics[width=6in]{bar_chart.pdf}
+    };
+\end{tikzpicture}
+
+
+```
+
+```{r echo=FALSE}
+
+# Data
+base_charge <- data.frame(
+  ServicePopulation = factor(c("25,000+", "10,000-24,999", "5,000-9,999", "2,500-4,999", "1,000-2,499", "1-999"),
+                             levels = c("25,000+", "10,000-24,999", "5,000-9,999", "2,500-4,999", "1,000-2,499", "1-999")),
+  Water = c(25, 22, 20, 18, 15, 10),
+  Sewer = c(27, 24, 21, 19, 17, 12)
+)
+
+# Convert to Long Format
+library(tidyr)
+base_charge_long <- pivot_longer(base_charge, cols = c(Water, Sewer), names_to = "ServiceType", values_to = "Charge")
+
+# Plot
+chart <- ggplot(base_charge_long, aes(x = ServicePopulation, y = Charge, fill = ServiceType)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+  scale_fill_manual(values = c("#4682B4", "gray")) +
+  coord_flip() +
+  labs(title = "Median Monthly Base Charge Amounts by Service Population",
+       x = "Service Population", y = "Median Monthly Base Charge") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 12),
+    legend.position = "bottom",
+    legend.title = element_blank()
+  )
+
+# Save as pdf
+ggsave("base_charge_chart.pdf", plot = chart, width = 4.8, height = 7)
+
+```
+
+
+```{=latex}
+\newpage
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+
+% Define colors
+\definecolor{WaterColor}{RGB}{36, 125, 169}
+\definecolor{TitleBarColor}{RGB}{135, 206, 250}
+\definecolor{GrayColor}{RGB}{169, 169, 169}
+
+    % Blue title bar
+    \node[anchor=north west,
+          fill=TitleBarColor,
+          fill opacity=1,
+          text width=\paperwidth,
+          minimum height=2cm]
+    at ([yshift=-0.5in]current page.north west) {
+        \hspace{1cm}
+        {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont
+         WHAT DO RATE STRUCTURES LOOK LIKE?}
+    };
+
+    % Left content
+    \node[anchor=north west,
+          text width=0.35\paperwidth,
+          align=left]
+    at ([xshift=1cm,yshift=-3.8cm]current page.north west) {
+        % Base Charges title
+        {\fontsize{16pt}{19.2pt}\selectfont\bfseries Base Charges}\\[0.7cm]
+
+        % first paragraph
+        {\fontsize{13pt}{17pt}\selectfont
+        Considerable variation exists in how utilities model rate structures, but almost all use a combination of a \textbf{base charge} and a \textbf{volumetric charge}.}\\[0.7cm]
+
+        % second paragraph
+        {\fontsize{13pt}{17pt}\selectfont
+        Base charges do not vary from one billing period to the next based on consumption. These charges are usually a constant, universal fixed amount for all customers, though they can vary based on customer class (e.g. residential vs. commercial) or even meter size.}\\[0.7cm]
+
+        % third paragraph
+        {\fontsize{13pt}{17pt}\selectfont
+        Base charges sometimes feature a \textbf{consumption allowance}, which is a volume of usage included in the base charge.}\\[0.7cm]
+
+        % forth paragraph
+        {\fontsize{13pt}{17pt}\selectfont
+        Larger water utilities tend to have \textbf{lower} base charges than smaller utilities, likely because they are able to spread \textbf{fixed costs} across a greater customer base.}\\[4cm]
+
+        % The bottom box with a gradient
+        \begin{center}
+        \begin{tikzpicture}[yshift=-3cm]
+            %  Main background (light blue gradient)
+            \fill[rounded corners=25pt,
+                  top color=white!98!blue,
+                  bottom color=white!98!blue,
+                  middle color=white]
+                  (0,0) rectangle ++(1.1\linewidth,5cm);
+
+            % Context
+            \node[text width=0.9\linewidth] at (0.1\linewidth,4.5cm) {
+                \centering
+                {\fontsize{13pt}{18pt}\selectfont
+                In North Carolina, \textbf{55\%} of\\
+                water rate structures with\\
+                base charges included a\\
+                consumption allowance. The\\
+                median monthly consumption\\
+                allowance is \textbf{2,162} gallons.}
+            };
+
+            % Add a light gray outline
+            \draw[rounded corners=25pt, gray!30]
+                (0,0) rectangle ++(1.1\linewidth,5cm);
+        \end{tikzpicture}
+        \end{center}
+    };
+
+    % Right Content Divider
+    \draw[gray!30, line width=2pt]
+        ([xshift=0.45\paperwidth,yshift=-3.8cm]current page.north west) --
+        ([xshift=0.45\paperwidth,yshift=-10.5in]current page.north west);
+
+    % Right upper and lower dividing lines (top)
+    \draw[gray!30, line width=2pt]
+        ([xshift=0.45\paperwidth,yshift=-13cm]current page.north west) --
+        ([xshift=0.96\paperwidth,yshift=-13cm]current page.north west);
+
+% Water Drop Content
+\node[anchor=north west, text width=0.4\paperwidth]
+at ([xshift=0.48\paperwidth,yshift=-4cm]current page.north west) {
+    {\fontsize{22pt}{16pt}\bfseries\selectfont Median Monthly Base}\\[1cm] 
+
+    % First (WATER)
+    \begin{tikzpicture}[scale=1]
+        \begin{scope}
+            \coordinate (a1) at (0.25,0.45);
+            \node[circle, draw=none, fill=WaterColor, minimum size=15pt] (c1) at (0,0) {};
+            \fill[WaterColor] (a1) --
+                (tangent cs:node=c1,point={(a1)},solution=1) --
+                (c1.center) --
+                (tangent cs:node=c1,point={(a1)},solution=2) -- cycle;
+        \end{scope}
+        \node[anchor=west] at (1,0.3) {\textbf{\fontsize{18pt}{18pt}\selectfont \$22.18}}; 
+        \node[anchor=west] at (1,-0.3) {\fontsize{12pt}{14pt}\selectfont\textbf{WATER}}; 
+    \end{tikzpicture}\\[1.5cm]
+
+    % Second (WASTEWATER)
+    \begin{tikzpicture}[scale=1]
+        \begin{scope}
+            \coordinate (a2) at (0.25,0.45);
+            \node[circle, draw=none, fill=GrayColor, minimum size=15pt] (c2) at (0,0) {}; 
+            \fill[GrayColor] (a2) --
+                (tangent cs:node=c2,point={(a2)},solution=1) --
+                (c2.center) --
+                (tangent cs:node=c2,point={(a2)},solution=2) -- cycle;
+        \end{scope}
+        \node[anchor=west] at (1,0.3) {\textbf{\fontsize{18pt}{18pt}\selectfont \$26.05}}; 
+        \node[anchor=west] at (1,-0.3) {\fontsize{12pt}{14pt}\selectfont\textbf{WASTEWATER}}; 
+    \end{tikzpicture}\\[1.5cm] 
+
+    % Third (WATER AND WASTEWATER)
+    \begin{tikzpicture}[scale=1]
+        \begin{scope}
+            \coordinate (a3) at (0.25,0.45);
+            \node[circle, draw=none, fill=GrayColor, minimum size=15pt] (c3) at (0,0) {};
+            \fill[WaterColor] (a3) --
+                (tangent cs:node=c3,point={(a3)},solution=1) --
+                (c3.center) --
+                (tangent cs:node=c3,point={(a3)},solution=2) -- cycle;
+        \end{scope}
+        \node[anchor=west] at (1,0.3) {\textbf{\fontsize{18pt}{18pt}\selectfont \$48.23}}; 
+        \node[anchor=west] at (1,-0.3) {\fontsize{12pt}{14pt}\selectfont\textbf{WATER AND WASTEWATER}}; 
+    \end{tikzpicture}
+};
+
+    % Place the chart below the right-hand dividing line
+    \node[anchor=north west] at ([xshift=0.47\paperwidth, yshift=-13.5cm]current page.north west) {
+        \includegraphics[width=3.8in]{base_charge_chart.pdf}
+    };
+
+\end{tikzpicture}
+
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Data
+uniform_data <- data.frame(
+  x = c(0, 20),
+  y = c(3, 3)
+)
+
+# Data for segments
+increasing_segments <- data.frame(
+  x = c(0, 5, 10),         # start x
+  xend = c(5, 10, 20),     # end x
+  y = c(2, 4, 6),          # y values
+  yend = c(2, 4, 6)        # same y values for horizontal lines
+)
+
+decreasing_segments <- data.frame(
+  x = c(0, 5, 10),         # start x
+  xend = c(5, 10, 20),     # end x
+  y = c(4, 3, 2),          # y values
+  yend = c(4, 3, 2)        # same y values for horizontal lines
+)
+
+# Common theme settings
+common_theme <- theme_minimal() +
+  theme(
+    plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 10),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.line = element_line(color = "black"),
+    plot.margin = margin(t = 20, r = 20, b = 20, l = 20)
+  )
+
+# Uniform Rate Plot
+uniform_plot <- ggplot(uniform_data, aes(x, y)) +
+  geom_line(color = "darkgreen", size = 1) +
+  scale_y_continuous(breaks = seq(0, 6, 2), limits = c(0, 6), 
+                    labels = scales::dollar) +
+  scale_x_continuous(breaks = seq(0, 20, 5), limits = c(0, 20)) +
+  labs(title = "UNIFORM", x = "kgals", y = "rate") +
+  common_theme
+
+# Increasing Block Rate Plot
+increasing_plot <- ggplot() +
+  geom_segment(data = increasing_segments,
+              aes(x = x, xend = xend, y = y, yend = yend),
+              color = "darkgreen", size = 1) +
+  scale_y_continuous(breaks = seq(0, 6, 2), limits = c(0, 6),
+                    labels = scales::dollar) +
+  scale_x_continuous(breaks = seq(0, 20, 5), limits = c(0, 20)) +
+  labs(title = "INCREASING BLOCK", x = "kgals", y = "rate") +
+  common_theme
+
+# Decreasing Block Rate Plot
+decreasing_plot <- ggplot() +
+  geom_segment(data = decreasing_segments,
+              aes(x = x, xend = xend, y = y, yend = yend),
+              color = "darkgreen", size = 1) +
+  scale_y_continuous(breaks = seq(0, 6, 2), limits = c(0, 6),
+                    labels = scales::dollar) +
+  scale_x_continuous(breaks = seq(0, 20, 5), limits = c(0, 20)) +
+  labs(title = "DECREASING BLOCK", x = "kgals", y = "rate") +
+  common_theme
+
+# Save plots
+ggsave("uniform_rate.pdf", plot = uniform_plot, width = 2.6, height = 2.6)
+ggsave("increasing_block.pdf", plot = increasing_plot, width = 2.6, height = 2.6)
+ggsave("decreasing_block.pdf", plot = decreasing_plot, width = 2.6, height = 2.6)
+```
+
+
+```{=latex}
+\newpage
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+
+    % Blue Title Bar
+\node[anchor=north west,
+          fill={rgb,255:red,135; green,206; blue,250}, 
+          fill opacity=1,
+          text width=\paperwidth, 
+          minimum height=2cm]
+    at ([yshift=-0.5in]current page.north west) {
+        \hspace{1cm}
+        {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont WAYS TO CHARGE FOR VOLUME}
+    };
+
+
+% Left Content Section
+\node[anchor=north west, text width=0.48\paperwidth, align=left]
+    at ([xshift=1cm, yshift=-4.3cm]current page.north west) {
+        % Subtitle
+        {\fontsize{15pt}{21.6pt}\bfseries WAYS TO CHARGE FOR VOLUME}\\[0.8cm] % Increased spacing after subtitle
+
+        % Paragraph 1
+        {\fontsize{14pt}{18pt}\selectfont
+        In addition to fixed charges, most rate structures also include a volumetric charge. Unlike fixed charges, volumetric charges vary month-to-month based on consumption. Three common ways to charge for volume are uniform, increasing block, and decreasing block rates.}\\[0.8cm] % Increased spacing between paragraphs
+
+        % Paragraph 2
+        {\fontsize{14pt}{18pt}\selectfont
+        With a \textbf{uniform rate} structure, customers are charged a constant rate per unit, i.e., the rate does not change as the customer consumes more.}\\[0.8cm]
+
+        % Paragraph 3
+        {\fontsize{14pt}{18pt}\selectfont
+        In an \textbf{increasing block rate} structure, the rate increases as the customer uses more. This structure is often employed by utilities that want to explicitly encourage or signal conservation by making higher volumes of consumption more expensive.}\\[0.8cm]
+
+        % Paragraph 4
+        {\fontsize{14pt}{18pt}\selectfont
+        Utilities may also structure their rates so that the rate per unit decreases at higher levels of consumption; this type of block rate is called a \textbf{decreasing block structure}. This type of rate structure may be used in cases where the utility wants to encourage economic development and attract high consuming customers.}
+    };
+
+
+% Bottom Information Box
+\node[anchor=north west, 
+       fill={rgb,255:red,135; green,206; blue,250}, 
+       rounded corners=25pt, % Adjust the rounded corners
+       text width=0.85\paperwidth, 
+       minimum height=4.8cm, % Increased height of the box
+       inner sep=15pt, % Increase padding for better aesthetics
+       align=center] % Center the text
+    at ([xshift=1.3cm, yshift=-22cm]current page.north west) { % Adjust positioning
+        {\sffamily\bfseries\color{white}\fontsize{16pt}{19pt}\selectfont WHAT IS THE MOST COMMON VOLUMETRIC RATE STRUCTURE?}\\[0.5cm] % Adjust title spacing
+        {\color{white}\fontsize{14pt}{17pt}\selectfont
+        In North Carolina, the majority of residential water (56\%) and wastewater (69\%) rate structures use a uniform rate to charge for volume. Standardized to thousands of gallons, the median uniform rate is \$5.96 for water and \$8.42 for wastewater services.}
+    };
+
+
+ % Right Side Plots (Uniform, Increasing, and Decreasing Block)
+\node[anchor=north west] at ([xshift=0.6\paperwidth, yshift=-3cm]current page.north west) {
+    \includegraphics[width=0.35\paperwidth]{uniform_rate.pdf}
+};
+
+\node[anchor=north west] at ([xshift=0.6\paperwidth, yshift=-8.8cm]current page.north west) {
+    \includegraphics[width=0.35\paperwidth]{increasing_block.pdf}
+};
+
+\node[anchor=north west] at ([xshift=0.6\paperwidth, yshift=-14.7cm]current page.north west) {
+    \includegraphics[width=0.35\paperwidth]{decreasing_block.pdf}
+};
+\end{tikzpicture}
+
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Data
+year <- c(2022, 2023, 2024)
+water <- c(40, 42, 45)
+sewer <- c(50, 52, 55)
+data <- data.frame(year, water, sewer)
+
+# Convert to long format
+library(tidyr)
+data_long <- pivot_longer(data, cols = c(water, sewer), names_to = "type", values_to = "price")
+
+# Plot
+chart <- ggplot(data_long, aes(x = year, y = price, color = type)) +
+  geom_line(size = 1.2) +
+  scale_color_manual(values = c("water" = "#4682B4", "sewer" = "gray")) +
+  labs(title = "Median Monthly Inside Bill\n2022 - 2024 (5000 gal)", 
+       x = "Year", y = "Median monthly price ($)", color = "") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+        axis.title = element_text(size = 10),
+        legend.position = "top")
+
+# Save as pdf
+ggsave("median_monthly_bill.pdf", chart, width = 3, height = 4)
+
+```
+
+
+```{=latex}
+\newpage
+\definecolor{WaterColor}{RGB}{36, 125, 169}
+\definecolor{GrayColor}{RGB}{169, 169, 169}
+\definecolor{TitleBarColor}{RGB}{135, 206, 250}
+
+\begin{tikzpicture}[remember picture, overlay]
+% Title Bar
+\node[anchor=north west,
+      fill=TitleBarColor,
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm]
+at ([yshift=-0.5in]current page.north west) {
+    \hspace{1cm}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont 
+    WHAT ARE UTILITIES CHARGING?}
+};
+
+% Header Section
+\node[anchor=north, text width=0.8\paperwidth, align=center]
+at ([yshift=-4.4cm]current page.north) {
+    {\fontsize{18pt}{21pt}\bfseries North Carolina's Average Bills}\\[0.3cm]
+    \textit{\fontsize{16pt}{18pt}Residential (5,000 GALS)} \hspace{2cm} \textit{\fontsize{16pt}{18pt}Commercial (50,000 GALS)}
+};
+
+% Vertical Divider Line
+\draw[very thick, gray!60] ([xshift=0cm, yshift=-5.5cm]current page.north) --
+                          ([xshift=0cm, yshift=-12cm]current page.north);
+
+% Residential Water
+\node[anchor=north, align=center]
+at ([xshift=-0.22\paperwidth, yshift=-7cm]current page.north) {
+    {\color{WaterColor}\fontsize{18pt}{22pt}\bfseries \$43.50} \hspace{0.1cm} \textcolor{gray!50}{|} \hspace{0.1cm} {\color{WaterColor}\fontsize{18pt}{22pt}\bfseries \$522.00}\\[0.2cm]
+    {\fontsize{12pt}{14pt}MONTH} \hspace{0.2cm} \textcolor{gray!50}{|} \hspace{0.2cm} {\fontsize{12pt}{14pt}YEAR}
+};
+
+% Commercial Water
+\node[anchor=north, align=center]
+at ([xshift=0.22\paperwidth, yshift=-7cm]current page.north) {
+    {\color{WaterColor}\fontsize{18pt}{22pt}\bfseries \$346.00} \hspace{0.1cm} \textcolor{gray!50}{|} \hspace{0.1cm} {\color{WaterColor}\fontsize{18pt}{22pt}\bfseries \$4,150.00}\\[0.2cm]
+    {\fontsize{12pt}{14pt}MONTH} \hspace{0.2cm} \textcolor{gray!50}{|} \hspace{0.2cm} {\fontsize{12pt}{14pt}YEAR}
+};
+
+% Water Title
+\node[anchor=north, text width=0.1\paperwidth, align=center, fill=white]
+at ([xshift=-0.15cm,yshift=-6cm]current page.north) {
+    {\fontsize{12pt}{16pt}\textbf{WATER}}
+};
+
+% Water Drop Icon
+\begin{scope}[shift={([xshift=0cm, yshift=-7.8cm]current page.north)}, rotate=33]
+    \coordinate (a1) at (0.5,0.8);
+    \node[circle, draw=none, fill=WaterColor, minimum size=30pt] (c1) at (0,0) {};
+    \fill[WaterColor] (a1) --
+        (tangent cs:node=c1,point={(a1)},solution=1) --
+        (c1.center) --
+        (tangent cs:node=c1,point={(a1)},solution=2) -- cycle;
+\end{scope}
+
+% Divider Line for Water and Wastewater
+\draw[gray!50, thick] ([xshift=-0.35\paperwidth, yshift=-8.5cm]current page.north) --
+                      ([xshift=0.35\paperwidth, yshift=-8.5cm]current page.north);
+
+% Wastewater Title
+\node[anchor=north, text width=0.1\paperwidth, align=center, fill=white]
+at ([xshift=-0.8cm,yshift=-9cm]current page.north) {
+    {\fontsize{12pt}{16pt}\textbf{WASTEWATER}}
+};
+
+% Residential Wastewater
+\node[anchor=north, align=center]
+at ([xshift=-0.22\paperwidth, yshift=-10cm]current page.north) {
+    {\color{GrayColor}\fontsize{18pt}{22pt}\bfseries \$53.90} \hspace{0.1cm} \textcolor{gray!50}{|} \hspace{0.1cm} {\color{GrayColor}\fontsize{18pt}{22pt}\bfseries \$647.10}\\[0.2cm]
+    {\fontsize{12pt}{14pt}MONTH} \hspace{0.2cm} \textcolor{gray!50}{|} \hspace{0.2cm} {\fontsize{12pt}{14pt}YEAR}
+};
+
+% Commercial Wastewater
+\node[anchor=north, align=center]
+at ([xshift=0.22\paperwidth, yshift=-10cm]current page.north) {
+    {\color{GrayColor}\fontsize{18pt}{22pt}\bfseries \$440.00} \hspace{0.1cm} \textcolor{gray!50}{|} \hspace{0.1cm} {\color{GrayColor}\fontsize{18pt}{22pt}\bfseries \$5,286.00}\\[0.2cm]
+    {\fontsize{12pt}{14pt}MONTH} \hspace{0.2cm} \textcolor{gray!50}{|} \hspace{0.2cm} {\fontsize{12pt}{14pt}YEAR}
+};
+
+% Wastewater Drop Icon
+\begin{scope}[shift={([xshift=0cm, yshift=-10.8cm]current page.north)}, rotate=33]
+    \coordinate (a2) at (0.5,0.8);
+    \node[circle, draw=none, fill=GrayColor, minimum size=30pt] (c2) at (0,0) {};
+    \fill[GrayColor] (a2) --
+        (tangent cs:node=c2,point={(a2)},solution=1) --
+        (c2.center) --
+        (tangent cs:node=c2,point={(a2)},solution=2) -- cycle;
+\end{scope}
+
+% Left Graph
+\node[anchor=north west] 
+at ([xshift=1cm, yshift=-15cm]current page.north west) {
+    \includegraphics[width=3in]{median_monthly_bill.pdf}
+};
+
+% Right Text Section
+\node[anchor=north west, text width=0.4\paperwidth, align=left]
+at ([xshift=4.5in, yshift=-15cm]current page.north west) {
+    {\fontsize{16pt}{20pt}\bfseries RANGE OF BILLS}\\[0.5cm]
+    {\fontsize{14pt}{15pt}\selectfont
+    The graph at the left shows the median monthly inside bill for both water and sewer at 5,000 gallons consumption. During the years 2022-2024, median water and sewer rates steadily increased.}\\[0.5cm]
+    {\fontsize{14pt}{15pt}\selectfont
+    On average, sewer rates were 24.78 percent higher than water rates during this period.}
+};
+
+\end{tikzpicture}
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Data
+water_data <- data.frame(
+ fiscal_year = as.factor(rep(2022:2024, each = 2)),
+ category = factor(rep(c("outside", "inside"), 3), 
+                  levels = c("inside", "outside")),
+ price = c(60, 40, 62, 42, 63, 43)
+)
+
+wastewater_data <- data.frame(
+ fiscal_year = as.factor(rep(2022:2024, each = 2)),
+ category = factor(rep(c("outside", "inside"), 3), 
+                  levels = c("inside", "outside")),
+ price = c(75, 45, 80, 48, 85, 50)
+)
+
+library(gridExtra)
+library(ggtext)
+
+# Setting up common theme
+my_theme <- theme_minimal() +
+ theme(
+   panel.grid.minor = element_blank(),
+   axis.title.x = element_blank(),
+   legend.position = "right",
+   plot.title = element_markdown(size = 11),
+   legend.title = element_text(size = 10),
+   legend.text = element_text(size = 9)
+ )
+
+# water bill plot
+p1 <- ggplot(water_data, aes(x = fiscal_year, y = price, group = category, color = category)) +
+ geom_line(size = 1.5) +
+ scale_color_manual(values = c("inside" = "#B7D9F2", "outside" = "#1F4E78")) +
+ labs(title = "Median Monthly <b>Water</b> Bill<br>Inside vs. Outside 2022-2024",
+      y = "Median monthly price $") +
+ scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 25)) +
+ my_theme
+
+# wastewater bill plot
+p2 <- ggplot(wastewater_data, aes(x = fiscal_year, y = price, group = category, color = category)) +
+ geom_line(size = 1.5) +
+ scale_color_manual(values = c("inside" = "#B7D9F2", "outside" = "#1F4E78")) +
+ labs(title = "Median Monthly <b>Wastewater</b> Bill<br>Inside vs. Outside 2022-2024",
+      y = "Median monthly price $") +
+ scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 25)) +
+ my_theme
+
+# save as pdf
+combined_plot <- arrangeGrob(p1, p2, ncol = 1, heights = c(1, 1))
+ggsave("base_charge_chart.pdf", plot = combined_plot, width = 4, height = 6)
+invisible()
+```
+
+
+```{=latex}
+\newpage
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay]
+% Define color
+\definecolor{TitleBarColor}{RGB}{135, 206, 250}
+
+% Title bar
+\node[anchor=north west,
+      fill=TitleBarColor,
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm]
+at ([yshift=-0.5in]current page.north west) {
+    \hspace{1cm}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont 
+    HOW DO OUTSIDE RATES COMPARE?}
+};
+
+% Left side context
+\node[anchor=north west,
+      text width=0.35\paperwidth,
+      align=left]
+at ([xshift=1cm,yshift=-3.8cm]current page.north west) {
+    % Main title
+    {\fontsize{16pt}{19.2pt}\selectfont\bfseries Inside vs. Outside Rates}\\[0.7cm]
+    
+    % Main context
+    {\fontsize{13pt}{17pt}\selectfont
+    All the charges presented above refer to what utilities charge customers who live within their political boundaries. Municipal utilities often serve customers who live outside of city limits, and a handful of other utilities specify geographical boundaries within their service area and identify their customers as residing "inside" and "outside" those boundaries. In many cases, utilities charge different rates for customers living inside or outside the boundary.}\\[1cm]
+    
+% Blue box with gradient
+\begin{center}
+\begin{tikzpicture}
+   % Main background (light blue gradient)
+   \fill[rounded corners=25pt,
+         top color=white!98!blue,
+         bottom color=white!98!blue,
+         middle color=white]
+         (0,0) rectangle ++(1.1\linewidth,3cm);
+    % Text content
+      \node[text width=0.9\linewidth] at (0.08\linewidth,2.5cm) {
+          \centering
+          {\fontsize{13pt}{16pt}\selectfont
+          In North Carolina \textbf{57\%} of water\\
+          rate structures and \textbf{60\%} of\\
+          wastewater rate structures\\
+          charge outside rates.}
+      };
+   % Add a light gray outline of the edges
+   \draw[rounded corners=25pt, gray!30]
+       (0,0) rectangle ++(1.1\linewidth,3cm);
+\end{tikzpicture}
+\end{center}
+
+% Text below
+  \vspace{1cm}  
+  {\fontsize{13pt}{17pt}\selectfont
+  The median monthly outside bill, at 6,000 gallons, is 1.52 times the inside bill for water and 1.63 times the inside bill for wastewater.}\\[1cm]
+  
+  {\fontsize{13pt}{17pt}\selectfont
+  The median combined water and wastewater bill at 5,000 gallons is \textbf{\$47.87} for customers inside service boundaries and \textbf{\$77.03} for those outside of service boundaries.}
+};
+
+% right-hand divider
+\draw[gray!30, line width=2pt] 
+    ([xshift=0.45\paperwidth,yshift=-3.8cm]current page.north west) --
+    ([xshift=0.45\paperwidth,yshift=-10.5in]current page.north west);
+
+% Right content area
+\node[anchor=north west, 
+      text width=0.45\paperwidth,
+      align=left]
+at ([xshift=0.48\paperwidth,yshift=-3.8cm]current page.north west) {
+    % import pdf
+    \includegraphics[width=\linewidth]{base_charge_chart.pdf}\\[1cm]
+    
+    % explanatory text
+    {\fontsize{13pt}{17pt}\selectfont
+    The graph above shows that on average, outside water rates are 53\% greater than inside water rates and outside wastewater rates are 61\% greater than inside rates.}\\[0.7cm]
+    
+    {\fontsize{13pt}{17pt}\selectfont
+    Generally, outside rates are greater than inside rates because customers reside farther, on average, from the water and wastewater treatment plant than inside customers.}
+};
+
+\end{tikzpicture}
+```
+
+
+```{=latex}
+\newpage
+\begin{tikzpicture}[remember picture,overlay]
+   % Background
+   \node[anchor=center] at (current page.center) {
+       \includegraphics[width=\paperwidth,height=\paperheight]{beautiful_forest.jpg}
+   };
+
+   % Blue title bar
+   \node[anchor=north west,
+         fill={rgb,255:red,135; green,206; blue,250},
+         fill opacity=1,
+         text width=\paperwidth,
+         minimum height=2cm]
+   at ([yshift=-0.5in]current page.north west) {
+       \hspace{1cm}
+       {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont 
+       HOW DO IRRIGATION RATES COMPARE?}
+   };
+
+% Context
+\node[anchor=north west,
+    fill=white,
+    fill opacity=0.9,
+    text width=\paperwidth,
+    inner sep=0pt]
+at ([yshift=-4cm]current page.north west) {
+  \hspace{1cm}
+  \parbox{\dimexpr\paperwidth-2cm\relax}{
+      \vspace{1cm}
+      {\fontsize{14pt}{20pt}\selectfont 
+      Some utilities offer unique irrigation rates. When the same utility provides water and wastewater service, the wastewater service is often tied to metered water consumption. To separate outdoor water use, which does not go into the wastewater system, from wastewater use, utilities will sometimes meter separately for irrigation. These unique irrigation rates do not charge customers for the equal wastewater use and, as a result, are often slightly more expensive than water rates, but less than the combined water/wastewater rate if no irrigation rate existed.
+      
+      \vspace{1cm}
+      
+      In North Carolina, most irrigation rates are equivalent to water rates. Only about 13\% of rate structures have unique irrigation rates. Approximately 68\% of the 67 unique irrigation rates are greater than water rates.}
+      \vspace{1cm}
+  }
+};
+\end{tikzpicture}
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Data
+data <- data.frame(
+  Period = factor(c("before 2021", "2021 - 2022", "2023 and later"),
+                 levels = c("before 2021", "2021 - 2022", "2023 and later")),
+  Start = c(0, 28, 48),
+  End = c(28, 48, 100),
+  Percentage = c(28, 20, 62)
+)
+
+# Plot
+p <- ggplot(data) +
+  geom_rect(aes(xmin = Start, xmax = End, ymin = 0.1, ymax = 1, fill = Period)) +
+  scale_fill_manual(
+    values = c("#6B93BC", "#B8D1E8", "#2B517E"),
+    name = "Effective Date"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank(),
+    legend.position = "top",
+    legend.box = "horizontal",
+    legend.title = element_text(size = 11),
+    legend.text = element_text(size = 10),
+    legend.spacing.x = unit(1, "cm"),
+    plot.title = element_text(size = 12, hjust = 0, margin = margin(b = 10)),
+    plot.margin = margin(t = 20, r = 20, b = 20, l = 20),
+    axis.title.x = element_text(size = 10, margin = margin(t = 10))
+  ) +
+  labs(
+    title = "Year Rate Structure in Effect",
+    x = "% of Rate Structures"
+  ) +
+  geom_text(aes(x = (Start + End)/2, y = 0.5, 
+                label = sprintf("%.0f%%", Percentage)),
+            color = "white",
+            size = 4)
+
+# save as pdf
+ggsave("rate_chart.pdf", p, width =8, height = 2.8, units = "in", dpi = 300)
+```
+
+
+```{=latex}
+\newpage
+\begin{tikzpicture}[remember picture, overlay]
+
+% Title Bar
+\node[anchor=north west,
+      fill={rgb,255:red,135; green,206; blue,250},
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm]
+at ([yshift=-0.5in]current page.north west) {
+    \hspace{1cm}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont 
+    WHEN WERE RATES LAST CHANGED?}
+};
+
+% Bullet Points Section
+\node[anchor=north west, text width=0.5\paperwidth, align=left]
+    at ([xshift=1cm, yshift=-5cm]current page.north west) {
+    \begin{itemize}
+        \item[\textbullet] {\fontsize{14pt}{18pt}\bfseries The \textbf{MAJORITY} of utilities in North Carolina have updated rates between \textbf{2022 and 2024}.}
+        \item[\textbullet] {\fontsize{14pt}{18pt}\bfseries Only about \textbf{1 IN 5} utilities have rates that were last updated before 2022.}
+    \end{itemize}
+};
+
+% Calendar Image
+\node[anchor=north west]
+    at ([xshift=14cm, yshift=-4.5cm]current page.north west) {
+    \includegraphics[width=2in]{calendar.png}
+};
+
+% Main Paragraph Section
+\node[anchor=north west, text width=0.83\paperwidth, align=justify]
+    at ([xshift=1.5cm, yshift=-11cm]current page.north west) {
+    {\fontsize{14pt}{15pt}\selectfont
+    In North Carolina, most utilities are actively evaluating and modifying their rate structures every one to two years. UNC EFC recommends that utilities review their rates at least every two years, at the minimum, to keep in pace with inflation. An annual or biennial review gives utilities the opportunity to evaluate if their current rates are enough to cover the necessary operating expenses and depreciation, not to mention savings goals for capital planning, emergencies, or other funds.}\\[0.5cm]
+    
+    {\fontsize{14pt}{15pt}\selectfont
+    Utilities that modestly raise rates at more frequent intervals accumulate more revenue over time than those that implement less frequent, but more drastic rate increases. Customers are also less likely to balk at smaller, more frequent but gradual rate increases than a significant one-time price hike.}\\[0.5cm]
+    
+    {\fontsize{14pt}{15pt}\selectfont
+    The bar chart below shows the proportion of utilities by when their rates were last updated.}
+};
+
+% Image Placeholder for Bar Chart
+\node[anchor=north west]
+    at ([xshift=1cm, yshift=-20cm]current page.north west) {
+    \includegraphics[width=7.5in]{rate_chart.pdf} % Adjust the width if needed
+};
+
+\end{tikzpicture}
+
+```
+
+```{=latex}
+\newpage
+
+\begin{tikzpicture}[remember picture, overlay]
+% Define color
+\definecolor{WaterBlue}{RGB}{43, 81, 126}
+\definecolor{GrayColor}{RGB}{128, 128, 128}
+
+% Title Bar
+\node[anchor=north west,
+      fill={rgb,255:red,135; green,206; blue,250},
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm]
+at ([yshift=-0.5in]current page.north west) {
+    \hspace{1cm}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont 
+    HOW HAVE RATES CHANGED?}
+};
+
+% First Paragraph
+\node[anchor=north west,
+      text width=0.85\paperwidth,
+      align=justify]
+at ([xshift=1cm, yshift=-1.6in]current page.north west) {
+    {\fontsize{14pt}{17pt}\selectfont
+    As the costs of providing service rise, so should rates. Providing water and wastewater service is costly and infrastructure-intensive. Regular, predictable rate increases are common and recommended. To provide some insight into the extent to which rates have changed, analyzing trends is an important exercise.}
+};
+
+% Second Paragraph
+\node[anchor=north west,
+      text width=0.85\paperwidth,
+      align=justify]
+at ([xshift=1cm, yshift=-2.8in]current page.north west) {
+    {\fontsize{14pt}{17pt}\selectfont
+    Flagging changes as well as the magnitude of those changes are both important when assessing the extent to which rates are meeting utilities' revenue needs. The figures below reflect one-year changes in residential rates using data from both 2023 and 2024 rate surveys. The underlying data only include utilities that for which data exist in both years.}
+};
+
+% Title for Rate Structures Section
+\node[anchor=north west,
+      text width=0.8\paperwidth,
+      align=center]
+at ([xshift=1cm, yshift=-4.1in]current page.north west) {
+    {\fontsize{10pt}{17pt}\selectfont\bfseries
+    Percent of Rate Structures with Increased Residential Bills from 2023-2024\\[0.2cm]
+    N=483 Utilities}
+};
+
+% Waterdrop Content Frame
+\begin{scope}
+    \coordinate (left-group) at ([xshift=6.5cm, yshift=-5.5in]current page.north west);
+
+    % WATER RATE STRUCTURES
+    \node[anchor=east] at ($(left-group) + (-0.5,0.3)$) {\color{WaterBlue}\fontsize{36pt}{43pt}\selectfont\bfseries 59\%};
+
+    % Single-color water drop
+    \begin{scope}[shift={($(left-group) + (0.8,0.5)$)}, rotate=33]
+        \coordinate (a1) at (0.5,0.8);
+        \node[circle, draw=none, fill=WaterBlue, minimum size=30pt] (c1) at (0,0) {};
+        \fill[WaterBlue] (a1) -- (tangent cs:node=c1,point={(a1)},solution=1) -- (c1.center) -- (tangent cs:node=c1,point={(a1)},solution=2) -- cycle;
+    \end{scope}
+
+    % up-pointing arrow
+\draw[fill=WaterBlue] ($(left-group) + (2.5,0)$) rectangle ($(left-group) + (2.9,1.0)$); 
+\draw[fill=WaterBlue] ($(left-group) + (2.35,0.8)$) -- ($(left-group) + (2.7,1.4)$) -- ($(left-group) + (3.05,0.8)$) -- cycle; 
+
+    % title text
+    \node[anchor=north, align=center] at ($(left-group) + (0.8,-0.5)$) {
+        \fontsize{12pt}{14pt}\selectfont\bfseries WATER RATE\\STRUCTURES
+    };
+
+    % WASTEWATER RATE STRUCTURES
+    % Right Percentage and Icon Groups
+    \coordinate (right-group) at ($(left-group) + (7,0)$);
+
+    % Percentage
+    \node[anchor=east] at ($(right-group) + (-0.5,0.3)$) {\color{GrayColor}\fontsize{36pt}{43pt}\selectfont\bfseries 64\%};
+
+    % Two-color drop - left half
+    \begin{scope}[shift={($(right-group) + (0.8,0.5)$)}, rotate=33]
+        % Left half (blue)）
+        \coordinate (a2) at (0.5,0.8);
+        \node[circle, draw=none, fill=WaterBlue, minimum size=30pt] (c2) at (0,0) {};
+        \begin{scope}
+            \clip (a2) -- (tangent cs:node=c2,point={(a2)},solution=1) -- (c2.center) -- (tangent cs:node=c2,point={(a2)},solution=2) -- cycle;
+            \fill[WaterBlue] (-1,-1) rectangle (0.25,2);
+        \end{scope}
+
+        % Right half (gray)
+        \begin{scope}
+            \clip (a2) -- (tangent cs:node=c2,point={(a2)},solution=1) -- (c2.center) -- (tangent cs:node=c2,point={(a2)},solution=2) -- cycle;
+            \fill[GrayColor] (-0.5,-1) rectangle (1,2);
+        \end{scope}
+    \end{scope}
+
+% up-pointing arrow
+\draw[fill=GrayColor] ($(right-group) + (2.5,0)$) rectangle ($(right-group) + (2.9,1.0)$); 
+\draw[fill=GrayColor] ($(right-group) + (2.35,0.8)$) -- ($(right-group) + (2.7,1.4)$) -- ($(right-group) + (3.05,0.8)$) -- cycle; 
+
+    % title text
+    \node[anchor=north, align=center] at ($(right-group) + (0.8,-0.5)$) {
+        \fontsize{12pt}{14pt}\selectfont\bfseries WASTEWATER RATE\\STRUCTURES
+    };
+\end{scope}
+% Footnote
+\node[anchor=north west,
+      text width=0.85\paperwidth]
+at ([xshift=2cm, yshift=-6.2in]current page.north west) {
+    {\fontsize{10pt}{12pt}\selectfont
+    * percentage of rate structures that saw an increase in bills at 5,000 gallons}
+};
+
+
+
+% Left side explanatory text
+\node[anchor=north west,
+      text width=0.35\paperwidth,
+      align=justify]
+at ([xshift=1.2cm, yshift=-7.0in]current page.north west) {
+    {\fontsize{14pt}{17pt}\selectfont
+    Given that in most cases bills are quite low, a large percentage rate increase may not translate to a large dollar amount increase. The median bill increase at 5,000 gallons for rate structure with increases was \$2.04 for water and \$2.78 for wastewater.}
+};
+
+% Blue title box
+\node[anchor=north west,
+      fill={rgb,255:red,70; green,130; blue,180},
+      text width=0.45\paperwidth,
+      minimum height=1.2cm,
+      text=white,
+      align=center]
+at ([xshift=11cm, yshift=-7.0in]current page.north west) {
+    {\fontsize{14pt}{17pt}\selectfont
+    Of Those Rate Structures with\\
+    Increased Bills Since 2023\\
+    How Much Did They Increase?\\
+    (analyzed at 5,000 gallons)}
+};
+
+% Gray background frame
+\node[anchor=north west,
+      fill=gray!10,
+      text width=0.45\paperwidth,
+      minimum height=6.9cm]
+at ([xshift=11cm, yshift=-7.9in]current page.north west) {};
+
+% Header line
+\node[anchor=north west]
+at ([xshift=11.5cm, yshift=-8.4in]current page.north west) {
+    {\fontsize{12pt}{14pt}\selectfont\bfseries
+    Median Increase \hspace{2cm} Average Increase}
+};
+
+% Water billing data rows and arrows
+\coordinate (water-arrow) at ([xshift=13.5cm, yshift=-9.2in]current page.north west);
+\node[anchor=north west]
+at ([xshift=12.3cm, yshift=-8.7in]current page.north west) {
+    {\fontsize{16pt}{19pt}\selectfont\bfseries
+    5.6\% \hspace{4cm} 11.3\%}
+};
+
+% WATER Blue arrow
+\draw[fill=WaterBlue] ($(water-arrow) + (2.5,0)$) rectangle ($(water-arrow) + (2.9,1.0)$);
+\draw[fill=WaterBlue] ($(water-arrow) + (2.35,0.8)$) -- ($(water-arrow) + (2.7,1.4)$) -- ($(water-arrow) + (3.05,0.8)$) -- cycle;
+\node[anchor=north] at ([xshift=16.2cm, yshift=-9.3in]current page.north west) {\textbf{WATER}};
+
+% Sewage data rows and arrows
+\coordinate (wastewater-arrow) at ([xshift=13.5cm, yshift=-10.2in]current page.north west);
+\node[anchor=north west]
+at ([xshift=12.3cm, yshift=-9.7in]current page.north west) {
+    {\fontsize{16pt}{19pt}\selectfont\bfseries
+    6.0\% \hspace{4cm} 12.6\%}
+};
+
+% WASTEWATER Gray arrow
+\draw[fill=GrayColor] ($(wastewater-arrow) + (2.5,0)$) rectangle ($(wastewater-arrow) + (2.9,1.0)$);
+\draw[fill=GrayColor] ($(wastewater-arrow) + (2.35,0.8)$) -- ($(wastewater-arrow) + (2.7,1.4)$) -- ($(wastewater-arrow) + (3.05,0.8)$) -- cycle;
+\node[anchor=north] at ([xshift=16.2cm, yshift=-10.4in]current page.north west) {\textbf{WASTEWATER}};
+
+\end{tikzpicture}
+
+```
+
+```{r echo=FALSE, eval = FALSE, message=FALSE, warning=FALSE}
+
+# First plot data
+data1 <- data.frame(
+  population = factor(c("< 1,000", "1,000 - 10,000", "> 10,000"),
+                     levels = c("< 1,000", "1,000 - 10,000", "> 10,000")),
+  above = c(38, 116, 90),
+  below = c(10, 12, 4)
+) %>%
+  pivot_longer(cols = c(above, below),
+               names_to = "type",
+               values_to = "value")
+
+# Second plot data
+data2 <- data.frame(
+  population = factor(c("< 1,000", "1,000 - 10,000", "> 10,000"),
+                     levels = c("< 1,000", "1,000 - 10,000", "> 10,000")),
+  above = c(12, 62, 74),
+  below = c(36, 66, 20)
+) %>%
+  pivot_longer(cols = c(above, below),
+               names_to = "type",
+               values_to = "value")
+
+
+legend_data <- data.frame(
+  type = c("below", "above"),  
+  label = c("Operating Revenue < Operating Expense", 
+            "Operating Revenue >= Operating Expense")
+)
+
+# Create plot
+legend <- ggplot() +
+  geom_rect(data = legend_data, 
+            aes(xmin = 0, xmax = 0.2, 
+                ymin = 1:2 - 0.3, ymax = 1:2 + 0.3,
+                fill = type)) +
+  geom_text(data = legend_data,
+            aes(x = 0.3, y = 1:2, 
+                label = label),
+            hjust = 0,
+            size = 6) +  
+  scale_fill_manual(values = c("below" = "#CCCCCC", 
+                              "above" = "#4CAF50")) +
+  xlim(0, 4) +
+  ylim(0.5, 2.5) +
+  theme_void() +
+  theme(legend.position = "none")
+
+# Create first plot
+chart1 <- ggplot(data1, aes(x = population, y = value, fill = type)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("above" = "#4CAF50", "below" = "#CCCCCC")) +
+  geom_text(aes(label = value),
+            position = position_stack(vjust = 0.5),
+            size = 6) +  
+  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 50)) +
+  labs(
+    title = "Proportion of Utilities with 2023 Operating\nRatio >= 1, Excluding Depreciation (n = 329 utilities)",
+    x = "Service Population",
+    y = "Number of Utilities"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),  
+    axis.title = element_text(size = 16), 
+    axis.text = element_text(size = 14),   
+    legend.position = "none"
+  )
+
+# Create second plot
+chart2 <- ggplot(data2, aes(x = population, y = value, fill = type)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("above" = "#4CAF50", "below" = "#CCCCCC")) +
+  geom_text(aes(label = value),
+            position = position_stack(vjust = 0.5),
+            size = 6) + 
+  scale_y_continuous(limits = c(0, 150), breaks = seq(0, 150, 50)) +
+  labs(
+    title = "Proportion of Utilities with 2023 Cost\nRecovery >= 1, Including Depreciation (n = 329 utilities)",
+    x = "Service Population",
+    y = "Number of Utilities"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),  
+    axis.title = element_text(size = 16),  
+    axis.text = element_text(size = 14),   
+    legend.position = "none"
+  )
+
+# Combine two plots
+combined_plot <- grid.arrange(
+  legend,
+  chart1,
+  chart2,
+  ncol = 1,
+  heights = c(0.2, 1, 1)
+)
+
+# Save as pdf
+ggsave("operating_ratio_charts.pdf", combined_plot, width = 8, height = 12, units = "in")
+```
+
+
+```{=latex}
+\newpage
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+
+% Define color
+\definecolor{TitleBarColor}{RGB}{135, 206, 250}
+
+% Title bar
+\node[anchor=north west,
+      fill=TitleBarColor,
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm]
+at ([yshift=-0.5in]current page.north west) {
+    \hspace{1cm}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont 
+    DO PRICES REFLECT THE TRUE COST OF SERVICE?}
+};
+
+% Leeft-side content
+\node[anchor=north west,
+      text width=0.36\paperwidth,
+      align=justify]
+at ([xshift=1cm,yshift=-1.6in]current page.north west) {
+    {\fontsize{14pt}{17pt}\selectfont
+    Utilities sometimes fall into the trap of pricing services based on what their customers have always paid rather than focusing on the bottom line of their balance sheets. To help utilities more accurately price the costs of their services, UNC EFC also collects financial information on utilities. For FY 2024, data were available for 329 utilities out of the total 483 utilities (68\%). Let's start with some essential definitions:}
+    
+    \vspace{0.8cm}
+    {\fontsize{13pt}{19pt}\selectfont\bfseries
+    WHAT IS OPERATING RATIO?}
+    
+    \vspace{0.7cm}
+    {\fontsize{14pt}{17pt}\selectfont
+    The operating ratio, also known as the cost recovery ratio, is a financial benchmark that determines if an entity is operating at a loss, gain, or just breaking even. The ratio is simply the division of operating revenues by operating expenses, which can include or exclude depreciation. A utility's operating ratio must be at least 1.0 to break even.}
+    
+    \vspace{0.8cm}
+    {\fontsize{13pt}{19pt}\selectfont\bfseries
+    WHY INCLUDE DEPRECIATION?}
+    
+    \vspace{0.7cm}
+    {\fontsize{14pt}{17pt}\selectfont
+    Whenever possible, depreciation should be included in operating expenses to account for the inevitable cost of replacing equipment and infrastructure at the end of its expected useful life. Depreciation allows costs to be figuratively parceled out over time, avoiding a sudden, and enormous expense when the time comes to replace assets.}
+};
+
+% Right-side content
+\node[anchor=north west,
+      text width=0.4\paperwidth,
+      align=justify]
+at ([xshift=0.52\paperwidth,yshift=-1.6in]current page.north west) {
+    {\fontsize{14pt}{17pt}\selectfont
+    Consider the differences in the graphs below with and without depreciation factored into operation expenses. Keeping in mind that some of the financials collected do not coordinate with utilities rates collected.}
+    
+    \vspace{1.6cm}
+    % import pdf
+    \includegraphics[width=\linewidth]{operating_ratio_charts.pdf}
+};
+
+% Divider
+\draw[gray!30, line width=2pt]
+    ([xshift=0.45\paperwidth,yshift=-1.6in]current page.north west) --
+    ([xshift=0.45\paperwidth,yshift=-10.5in]current page.north west);
+
+\end{tikzpicture}
+```
+
+```{=latex}
+\newpage
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+
+% Define color
+\definecolor{TitleBarColor}{RGB}{135, 206, 250}
+
+% Title bar
+\node[anchor=north west,
+      fill=TitleBarColor,
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm]
+at ([yshift=-0.5in]current page.north west) {
+    \hspace{1cm}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont 
+    DO PRICES REFLECT THE TRUE COST OF SERVICE?}
+};
+
+% left-side content
+\node[anchor=north west,
+      text width=0.42\paperwidth,
+      align=justify] at ([xshift=1cm,yshift=-1.6in]current page.north west) {
+    {\fontsize{13.5pt}{17pt}\selectfont
+    Without including depreciation, \textbf{312 of the 329} utilities for which depreciation data was available (95\%) generated enough revenue to recover operating costs (operating ratio of 1.0 or greater). Of the utilities that were not able to recover expenses, all 17 serve 10,000 people or less.
+
+    \vspace{0.5cm}
+    With depreciation included, \textbf{219 of the 329} (66\%) utilities generated enough revenue to cover operating expenses. All utilities face the issue of generating sufficient revenue to pay for the high fixed costs of providing safe and reliable services. However, smaller utilities must spread out those high fixed costs over a smaller customer base. 100 out of 110 of the utilities with an operating ratio of less than 1.0 serve fewer than 10,000 people.
+
+    \vspace{0.8cm}
+    {\fontsize{12.5pt}{18pt}\selectfont\bfseries
+    WHAT IS CONSIDERED HEALTHY?}
+
+    \vspace{0.5cm}
+    The Cost Recovery dial on the \href{https://efc.sog.unc.edu/resource/north-carolina-water-and-wastewater-rates-dashboard/}{\textbf{\color{blue}{Rates Dashboard}}} uses red, yellow, and green bands to give the viewer a quick overview of the utility's operating ratio health.
+
+    \vspace{0.5cm}
+    While it is clear that "in the red" is not a good position; there is no universal standard for what constitutes a healthy operating ratio beyond 1.0. Generally, as the Cost Recovery dial shows in the green band above, an operating ratio, including depreciation of at least 1.2, allows utilities to account for day-to-day operations and maintenance expenses, as well as for future capital costs.
+
+    \vspace{0.5cm}
+    Just 28.7\% of utilities have an operating ratio, including depreciation of 1.2 or greater.}
+};
+
+% Right-side content
+\node[anchor=north west,
+      text width=0.4\paperwidth,
+      align=justify] at ([xshift=0.52\paperwidth,yshift=-1.6in]current page.north west) {
+    % import pdf
+    \hspace{2cm}\includegraphics[width=0.6\linewidth]{scale.png} 
+    \vspace{0.5cm}
+    {\fontsize{13pt}{19pt}\selectfont\bfseries
+    ADDITIONAL FINANCIAL DATA}
+
+    \vspace{0.5cm}
+    {\fontsize{14pt}{17pt}\selectfont
+    The 2024 \href{https://efc.sog.unc.edu/resource/north-carolina-water-and-wastewater-rates-dashboard/}{\textbf{\color{blue}{Rates Dashboard}}} features more than 10 financial metrics, including \textbf{days cash on hand, quick ratio, asset depreciation}, and more!}
+};
+
+% Divider
+\draw[gray!30, line width=2pt]
+    ([xshift=0.5\paperwidth,yshift=-1.6in]current page.north west) --
+    ([xshift=0.5\paperwidth,yshift=-10.5in]current page.north west);
+
+\end{tikzpicture}
+
+```
+
+
+```{=latex}
+\newpage
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+% Define color
+\definecolor{TitleBarColor}{RGB}{135, 206, 250}
+\definecolor{WaterColor}{RGB}{36, 125, 169}
+\definecolor{WastewaterColor}{RGB}{169, 169, 169}
+
+% Title bar
+\node[anchor=north west,
+      fill=TitleBarColor,
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm] at ([yshift=-0.5in]current page.north west) {
+    \hspace{1cm}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont 
+    HOW AFFORDABLE ARE RESIDENTIAL BILLS?}
+};
+
+% First paragraph
+\node[anchor=north west,
+      text width=0.85\paperwidth,
+      align=justify] at ([xshift=1cm,yshift=-1.6in]current page.north west) {
+    {\fontsize{13.5pt}{17pt}\selectfont
+    Assessing the affordability of rates remains a challenge because there is no one true, universal measure of affordability. The most commonly used indicator, Percent Median Household Income, or "Percent MHI," calculates how a year's worth of water and wastewater bills at certain consumption threshold compares to the MHI of the community served by the utility. MHI is provided by the most recent 5-year estimates of the US Census Bureau's American Community Survey. In the graphic below, 5,000 gallons/month is used to assess affordability.}
+};
+
+% Header Section
+\node[anchor=north, text width=0.8\paperwidth, align=center]
+at ([xshift=-0.3cm, yshift=-8.4cm]current page.north) {  
+    {\fontsize{16pt}{19pt}\bfseries MEDIAN \% MHI} \hspace{2cm} {\fontsize{16pt}{19pt}\bfseries RANGE OF \% MHI}\\[0.3cm]
+    {\fontsize{12pt}{14pt}for 5,000 Gals/Month:} \hspace{2cm} {\fontsize{12pt}{14pt}for 5,000 Gals/Month:}
+};
+
+% Vertical Divider Line
+\draw[very thick, gray!60] ([xshift=-0.3cm, yshift=-9.5cm]current page.north) --  
+                          ([xshift=-0.3cm, yshift=-16cm]current page.north);
+
+% Left MHI
+\node[anchor=north, align=center]
+at ([xshift=-0.22\paperwidth-0.3cm, yshift=-11cm]current page.north) {
+    {\color{WaterColor}\fontsize{24pt}{29pt}\bfseries 1.17\%}
+};
+
+% Right MHI Range
+\node[anchor=north, align=center]
+at ([xshift=0.22\paperwidth-0.3cm, yshift=-11cm]current page.north) { 
+    {\color{WaterColor}\fontsize{24pt}{29pt}\bfseries 0.29\% - 4.91\%}
+};
+
+% Water Title
+\node[anchor=north, text width=0.1\paperwidth, align=center, fill=white]
+at ([xshift=-0.3cm, yshift=-10cm]current page.north) { 
+    {\color{WaterColor}\fontsize{14pt}{17pt}\bfseries WATER}
+};
+
+% Water Drop Icon
+\begin{scope}[shift={([xshift=-0.3cm, yshift=-11.8cm]current page.north)}, rotate=33] 
+    \coordinate (a1) at (0.5,0.8);
+    \node[circle, draw=none, fill=WaterColor, minimum size=30pt] (c1) at (0,0) {};
+    \fill[WaterColor] (a1) --
+        (tangent cs:node=c1,point={(a1)},solution=1) --
+        (c1.center) --
+        (tangent cs:node=c1,point={(a1)},solution=2) -- cycle;
+\end{scope}
+
+% Divider Line for Water and Wastewater
+\draw[gray!50, thick] ([xshift=-0.35\paperwidth-0.3cm, yshift=-12.5cm]current page.north) --  
+                      ([xshift=0.35\paperwidth-0.3cm, yshift=-12.5cm]current page.north);
+
+% Wastewater Title
+\node[anchor=north, text width=0.15\paperwidth, align=center, fill=white]
+at ([xshift=-0.3cm, yshift=-13cm]current page.north) { 
+    {\color{WastewaterColor}\fontsize{14pt}{17pt}\bfseries WASTEWATER}
+};
+
+% Left Wastewater MHI
+\node[anchor=north, align=center]
+at ([xshift=-0.22\paperwidth-0.3cm, yshift=-14cm]current page.north) {
+    {\color{WastewaterColor}\fontsize{24pt}{29pt}\bfseries 1.46\%}
+};
+
+% Right Wastewater MHI Range
+\node[anchor=north, align=center]
+at ([xshift=0.22\paperwidth-0.3cm, yshift=-14cm]current page.north) {
+    {\color{WastewaterColor}\fontsize{24pt}{29pt}\bfseries 0.28\% - 5.27\%}
+};
+
+% Wastewater Drop Icon
+\begin{scope}[shift={([xshift=-0.3cm, yshift=-14.8cm]current page.north)}, rotate=33]  
+    \coordinate (a2) at (0.5,0.8);
+    \node[circle, draw=none, fill=WastewaterColor, minimum size=30pt] (c2) at (0,0) {};
+    \fill[WastewaterColor] (a2) --
+        (tangent cs:node=c2,point={(a2)},solution=1) --
+        (c2.center) --
+        (tangent cs:node=c2,point={(a2)},solution=2) -- cycle;
+\end{scope}
+
+% bottom paragraph
+\node[anchor=north west,
+      text width=0.85\paperwidth,
+      align=justify] at ([xshift=1cm,yshift=-6.5in]current page.north west) {
+    {\fontsize{13.5pt}{17pt}\selectfont
+    As all communities have a range of income brackets, it is important to keep in mind that what may seem like a small percentage of the community's MHI can have a proportionally larger impact on lower-income populations. This includes households making less than or equal to the federal poverty guideline, \$26,200 in 2020 for a family of four, according to the US Department of Health and Human Services. In North Carolina, the 75th percentile water bill and wastewater bill equates to about 1.18\% of income for water and 1.47\% for wastewater, respectively, at the federal poverty guideline.}
+};
+
+% Define color
+\definecolor{CustomBlue}{RGB}{173, 216, 255} 
+\definecolor{BorderBlue}{RGB}{0, 125, 171}  
+
+% Blue box
+\node[anchor=north west,
+      fill=CustomBlue, 
+      draw=BorderBlue, 
+      line width=1pt,   
+      inner sep=20pt,  
+      text width=0.8\paperwidth,
+      align=justify,
+      rounded corners=3pt] 
+at ([xshift=1cm,yshift=-8.5in]current page.north west) {
+    {\fontsize{13.5pt}{17pt}\selectfont
+    As all communities have a range of income brackets, it is important to keep in mind that what may seem like a small percentage of the community's MHI can have a proportionally larger impact on lower-income populations. For a more in-depth look at the affordability of water and wastewater services in a community, the EFC offers the free, interactive \href{https://efc.sog.unc.edu/resource/water-and-wastewater-residential-rates-affordability-assessment-tool/}{\textbf{\color{blue}{Affordability Assessment Tool}}}, available for use on our website.
+    }
+};
+\end{tikzpicture}
+```
+
+```{=latex}
+\newpage
+\definecolor{TitleBarColor}{RGB}{135, 206, 250} 
+\definecolor{BackgroundColor}{RGB}{240, 248, 255} 
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+% Background
+\fill[BackgroundColor] (current page.north west) rectangle (current page.south east);
+
+% upper title bar
+\node[anchor=north west,
+      fill=TitleBarColor,
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm] at ([yshift=-0.5in]current page.north west) {
+    \begin{center}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont\color{white} 
+    FURTHER RESOURCES}
+    \end{center}
+};
+
+% resource link box
+\node[anchor=north,
+      draw,
+      line width=2pt,
+      text width=0.8\paperwidth,
+      align=center,
+      inner sep=15pt] at ([yshift=-1.7in]current page.north) {
+    {\fontsize{13pt}{16pt}\selectfont
+    All the following free resources are available at:\\
+    \href{https://efc.sog.unc.edu}{\textbf{\color{blue}{efc.sog.unc.edu}}}}
+};
+
+% Left side text
+\node[anchor=north west,
+      text width=0.4\paperwidth,
+      align=left] at ([xshift=2cm,yshift=-3in]current page.north west) {
+    {\fontsize{13pt}{16pt}\selectfont
+    \href{https://efc.sog.unc.edu/resource/north-carolina-water-and-wastewater-rates-dashboard/}{\textbf{\color{blue}{2024 Water and Wastewater Rates Dashboard}}}
+    
+    \vspace{0.5cm}
+    \href{https://public.tableau.com/app/profile/efcatunc/viz/NCRateTables/Cover}{\textbf{\color{blue}{Downloadable tables of rates and rate structures for residential, commercial, and irrigation customer classes for water and wastewater}}}
+    
+    \vspace{0.5cm}
+    Tableau software tool with standardized \href{https://public.tableau.com/app/profile/efcatunc/viz/NC2024RateSheets/RateSheet}{\textbf{\color{blue}{rate sheets}}} for all utilities in the survey
+    
+    \vspace{0.5cm}
+    \textbf{Need Technical Assistance?}\\
+    \textbf{Fill out the form in the link below.}
+    
+    \vspace{0.3cm}
+    \href{https://efc.sog.unc.edu/technical-assistance/}{\textbf{\color{blue}{https://efc.sog.unc.edu/technical-assistance/}}}
+    }
+};
+
+% Right side picture
+\node[anchor=north east] at ([xshift=-2.5cm,yshift=-3in]current page.north east) {
+    \includegraphics[width=0.3\paperwidth]{dashboard.png}
+};
+
+% Lower title bar
+\node[anchor=north west,
+      fill=TitleBarColor,
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm] at ([yshift=-7in]current page.north west) {
+    \begin{center}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont\color{white} 
+    QUESTIONS? FEEDBACK?}
+    \end{center}
+};
+
+% Bottom Contact Information
+\node[anchor=south west,
+      inner sep=1pt] at ([xshift=2.7cm,yshift=5.3cm]current page.south west) {
+    \begin{tabular}{c}
+        \includegraphics[height=1.7cm]{nclm_logo.png}
+    \end{tabular}
+};
+\node[anchor=south west,
+      inner sep=1pt] at ([xshift=4cm,yshift=3.3cm]current page.south west) { 
+    \begin{tabular}{c}
+        {\fontsize{12pt}{14pt}\selectfont\bfseries Chris Nida}\\
+        {\fontsize{12pt}{14pt}\selectfont cnida@nclm.org}
+    \end{tabular}
+};
+\node[anchor=south east,
+      inner sep=15pt] at ([xshift=-3.5cm,yshift=2.8cm]current page.south east) {
+    \begin{tabular}{c}
+        \includegraphics[height=2.5cm]{unc_logo.png}\\[0.3cm]
+        {\fontsize{12pt}{14pt}\selectfont\bfseries Melanie Sanchez}\\
+        {\fontsize{12pt}{14pt}\selectfont msanchez@sog.unc.edu}
+    \end{tabular}
+};
+
+
+\end{tikzpicture}
+```
+
+
+
+
+```{=latex}
+\newpage
+% Define color
+\definecolor{TitleBarColor}{RGB}{135, 206, 250} 
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+% Title bar
+\node[anchor=north west,
+      fill=TitleBarColor,
+      fill opacity=1,
+      text width=\paperwidth,
+      minimum height=2cm] at ([yshift=-0.5in]current page.north west) {
+    \begin{center}
+    {\sffamily\bfseries\fontsize{20pt}{24pt}\selectfont\color{white} 
+    ACKNOWLEDGMENTS}
+    \end{center}
+};
+
+% import picture
+\node[anchor=north west] at ([xshift=-0.2cm,yshift=-1.24in]current page.north west) {
+    \includegraphics[width=\paperwidth,height=4.5in]{dogwood.png}
+};
+
+% Main content
+\node[anchor=north west,
+      text width=0.8\paperwidth,
+      align=justify] at ([xshift=1cm,yshift=-6.5in]current page.north west) {
+    {\fontsize{14pt}{16pt}\selectfont
+    The UNC Environmental Finance would like to thank the 
+    \href{https://deq.nc.gov/about/divisions/water-infrastructure}{\textbf{\color{blue}{North Carolina Department of Environmental Quality's Division of Water Infrastructure}}}, the 
+    \href{https://www.nclm.org/}{\textbf{\color{blue}{North Carolina League of Municipalities}}}, and all the water and wastewater systems that participated in this year's survey. The EFC would also like to thank the 
+    \href{https://www.ncleg.gov/}{\textbf{\color{blue}{Local Government Commission}}} for the financial data presented both on the dashboard and in this report.
+    }
+};
+
+% Logo part
+\node[anchor=south] at ([yshift=1in]current page.south) {
+    \begin{tabular}{c@{\hspace{1cm}}c@{\hspace{1cm}}c}
+        \includegraphics[width=0.25\paperwidth]{unc_logo.png} &
+        \includegraphics[width=0.25\paperwidth]{DEQ.png} &
+        \includegraphics[width=0.25\paperwidth]{nclm_logo.png}
+    \end{tabular}
+};
+
+
+\end{tikzpicture}
+```
+
+
+
+
+
